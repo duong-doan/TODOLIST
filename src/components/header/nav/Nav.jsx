@@ -8,8 +8,10 @@ const Nav = ({ clickCreate }) => {
             <Link to="/create">
                 <h2 onClick={clickCreate}>Create new task</h2>
             </Link>
-            <input type="text" />
-            <button>search</button>
+            <div className="navbar-search">
+                <input type="text" />
+                <button>Search</button>
+            </div>
         </div>
     )
 }
