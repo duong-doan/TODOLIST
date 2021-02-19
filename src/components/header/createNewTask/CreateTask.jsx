@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import ListContent from '../../main/content/ListContent';
+import NewTaskList from '../../main/content/newTaskList/NewTaskList';
 
 const CreateTask = ({ onSubmitForm, target }) => {
   const [value, setValue] = useState({
@@ -16,29 +20,29 @@ const CreateTask = ({ onSubmitForm, target }) => {
   return (
     target === 'create' ?
       <form onSubmit={hanldeSubmit}>
-        <div className="new-task__item">
+        <div className="form__item">
           <label className="label1" > Title: </label >
           <input className="input1" type="text" placeholder="name of title" onChange={e => setValue({ ...value, title: e.target.value })} />
         </div>
 
-        <div className="new-task__item">
+        <div className="form__item">
           <label className="label2">Creator: </label>
           <input className="input2" type="text" placeholder="name of creator" onChange={e => setValue({ ...value, creator: e.target.value })} />
         </div>
 
-        <div className="new-task__item">
+        <div className="form__item">
           <label className="label3">Created at: </label>
           <input className="input3" type="text" disabled />
         </div>
 
-        <div className="new-task__item">
+        <div className="form__item">
           <label className="label4">Description: </label>
           <input className="input4" type="text" placeholder="Description detail" onChange={e => setValue({ ...value, desc: e.target.value })} />
         </div>
 
         <button type="submit">Save</button>
 
-      </form> : null
+      </form> : <ListContent />
   )
 }
 

@@ -1,17 +1,20 @@
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ContentItem from './ContentItem';
+import ContentItem from '../ContentItem';
 
 const NewTaskList = ({ dataNewTaskList, target }) => {
     return (
         dataNewTaskList.map(item => (
-            <ContentItem
-                key={item.id}
-                title={item.title}
-                creator={item.creator}
-                status={item.status}
-                description={item.description} />
+            <Link >
+                <ContentItem
+                    key={item.id}
+                    title={item.title}
+                    creator={item.creator}
+                    status={item.status}
+                    description={item.description} />
+            </Link>
         ))
+
     )
 }
 

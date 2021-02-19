@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './app.scss'
 
 import Sidebar from './components/main/sidebar/Sidebar';
@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/header/nav/Nav';
 import CreateTask from './components/header/createNewTask/CreateTask';
 import EditContent from './components/main/content/EditContent';
-import NewTaskList from './components/main/content/NewTaskList';
+import NewTaskList from './components/main/content/newTaskList/NewTaskList';
+import DoingTaskList from './components/main/content/doingTaskList/DoingTaskList';
+import DoneTaskList from './components/main/content/doneTaskList/DoneTaskList';
 
 const App = () => {
 
@@ -25,6 +27,8 @@ const App = () => {
               <Route path="/edit" exact component={EditContent} />
               <Route path="/create" exact component={CreateTask} />
               <Route path="/new" exact component={NewTaskList} />
+              <Route path="/doing" exact component={DoingTaskList} />
+              <Route path="/done" exact component={DoneTaskList} />
             </Switch>
           </div>
         </div>
