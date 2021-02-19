@@ -131,6 +131,11 @@ $text-color-content: rgb(53, 52, 52);
           label {
             font-weight: 600;
           }
+
+          input[type="radio"]:hover,
+          label[for]:hover {
+            cursor: pointer;
+          }
         }
 
         .form__item-button {

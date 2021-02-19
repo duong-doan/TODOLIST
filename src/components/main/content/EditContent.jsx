@@ -57,18 +57,18 @@ const EditContent = ({ target, onSubmitFormEdit, onResetForm, onDeleteForm, rese
 
         <div className="form__item">
           <div className="form__item-radio">
-            <label>New</label>
-            <input type="radio" name="status-task" value="new" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
+            <label for="new">New</label>
+            <input type="radio" name="status-task" id="new" value="new" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
           </div>
 
           <div className="form__item-radio">
-            <label>Doing</label>
-            <input type="radio" name="status-task" value="doing" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
+            <label for="doing">Doing</label>
+            <input type="radio" name="status-task" id="doing" value="doing" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
           </div>
 
           <div className="form__item-radio">
-            <label>Done</label>
-            <input type="radio" name="status-task" value="done" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
+            <label for="done">Done</label>
+            <input type="radio" name="status-task" id="done" value="done" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
           </div>
         </div>
 

@@ -109,7 +109,16 @@ export default (state = initialState, action) => {
     //     target: 'edit'
     //   }
 
-    // case DELETE_FORM_EDIT:
+    case DELETE_FORM_EDIT:
+      const newDataDelete = [...state.DATA]
+      const indexTask = newDataDelete.findIndex(x => x.id === state.idTask)
+      newDataDelete.splice(indexTask, 1)
+      console.log(newDataDelete);
+      return {
+        ...state,
+        DATA: newDataDelete,
+        target: ''
+      }
 
 
     default:
