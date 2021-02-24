@@ -1,12 +1,11 @@
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import React, { useState } from "react";
+import React from "react";
 import ContentItem from "./ContentItem";
 
-const ListContent = ({ dataTask, onClickedTask }) => {
-
-    return dataTask.map(item => (
+const ListContent = ({ dataTask, onClickedTask, isSearch, arrSearchForm, todos }) => {
+    return isSearch ? arrSearchForm.map(item => (
         <Link to="/edit">
             <ContentItem
                 key={item.id}
@@ -14,21 +13,23 @@ const ListContent = ({ dataTask, onClickedTask }) => {
                 creator={item.creator}
                 status={item.status}
                 description={item.description}
-                clicked={() => onClickedTask(item.id)}
+                clicked={() => onClickedTask(item)}
             />
         </Link>
-    ))
+    )) : null
 }
 
 const mapStateToProps = state => {
     return {
-        dataTask: state.create.DATA
+        dataTask: state.create.DATA,
+        arrSearchForm: state.create.arrSearchForm,
+        isSearch: state.create.isSearch,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onClickedTask: (index) => { dispatch({ type: 'CLICK_TASK', id: index }) }
+        onClickedTask: (item) => { dispatch({ type: 'CLICK_TASK', value: item }) }
     }
 }
 

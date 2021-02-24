@@ -1,20 +1,27 @@
-import React from 'react';
-import './app.scss'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.scss';
+import { connect } from 'react-redux';
+import axios from "axios";
 
 import Sidebar from './components/main/sidebar/Sidebar';
-import ListContent from './components/main/content/ListContent';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/header/nav/Nav';
 import CreateTask from './components/header/createNewTask/CreateTask';
 import EditContent from './components/main/content/EditContent';
 import NewTaskList from './components/main/content/newTaskList/NewTaskList';
 import DoingTaskList from './components/main/content/doingTaskList/DoingTaskList';
 import DoneTaskList from './components/main/content/doneTaskList/DoneTaskList';
+import AllTaskList from './components/main/content/allTaskList/AllTaskList';
 
-const App = () => {
+const App = ({ onPushData }) => {
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/todos')
+      .then(res => onPushData(res))
+  }, [])
 
   return (
-    <Router>
+    <Router >
       <div className="app">
         <Nav />
         <div className="main">
@@ -23,12 +30,13 @@ const App = () => {
           </div>
           <div className="main__content">
             <Switch>
-              <Route path="/list" exact component={ListContent} />
-              <Route path="/edit" exact component={EditContent} />
-              <Route path="/create" exact component={CreateTask} />
+              <Route path="/" exact component={AllTaskList} />
+              <Route path="/all" exact component={AllTaskList} />
               <Route path="/new" exact component={NewTaskList} />
               <Route path="/doing" exact component={DoingTaskList} />
               <Route path="/done" exact component={DoneTaskList} />
+              <Route path="/create" exact component={CreateTask} />
+              <Route path="/edit" exact component={EditContent} />
             </Switch>
           </div>
         </div>
@@ -37,5 +45,19 @@ const App = () => {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    todos: state.create.DATA,
+    target: state.create.target
+  }
+}
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onPushData: (data) => { dispatch({ type: 'PUSH_DATA', data: data }) }
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

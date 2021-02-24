@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import ListContent from '../../main/content/ListContent';
-import NewTaskList from '../../main/content/newTaskList/NewTaskList';
+const CreateTask = ({ onSubmitForm, target, }) => {
+  const time = ` ${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+  const date = `${new Date().getDay()}-${new Date().getMonth() + 1}-${new Date().getFullYear()}`
+  const createAt = `${time} ${date}`
 
-const CreateTask = ({ onSubmitForm, target }) => {
   const [value, setValue] = useState({
     title: '',
     creator: '',
@@ -32,7 +32,7 @@ const CreateTask = ({ onSubmitForm, target }) => {
 
         <div className="form__item">
           <label className="label3">Created at: </label>
-          <input className="input3" type="text" disabled />
+          <input className="input3" type="text" value={createAt} disabled />
         </div>
 
         <div className="form__item">
@@ -42,13 +42,13 @@ const CreateTask = ({ onSubmitForm, target }) => {
 
         <button type="submit">Save</button>
 
-      </form> : <ListContent />
+      </form> : null
   )
 }
 
 const mapStateToProps = state => {
   return {
-    target: state.create.target
+    target: state.create.target,
   }
 }
 

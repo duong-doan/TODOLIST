@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const Sidebar = ({ clickNewTaskSidebar, clickDoingTaskSidebar, clickDoneTaskSidebar }) => {
+const Sidebar = ({ clickNewTaskSidebar, clickDoingTaskSidebar, clickDoneTaskSidebar, clickAllTaskSidebar }) => {
+
     return (
         <ul>
-            <Link to="/list">
-                <li>All task</li>
+            <Link to="/all">
+                <li onClick={clickAllTaskSidebar}>All task</li>
             </Link>
             <Link to="/new">
                 <li onClick={clickNewTaskSidebar}>New task</li>
@@ -26,6 +27,7 @@ const mapDispatchToProps = dispatch => {
         clickNewTaskSidebar: () => { dispatch({ type: 'CLICK_NEW_SIDEBAR' }) },
         clickDoingTaskSidebar: () => { dispatch({ type: 'CLICK_DOING_SIDEBAR' }) },
         clickDoneTaskSidebar: () => { dispatch({ type: 'CLICK_DONE_SIDEBAR' }) },
+        clickAllTaskSidebar: () => { dispatch({ type: 'CLICK_ALLTASK_SIDEBAR' }) }
     }
 }
 

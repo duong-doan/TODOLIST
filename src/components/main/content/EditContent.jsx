@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import ListContent from './ListContent';
 
-const EditContent = ({ target, onSubmitFormEdit, onResetForm, onDeleteForm, resetForm }) => {
+const EditContent = ({ target, onSubmitFormEdit, onResetForm, onDeleteForm, resetForm, title, status, description, creator }) => {
+  const time = ` ${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+  const date = `${new Date().getDay()}-${new Date().getMonth() + 1}-${new Date().getFullYear()}`
+  const createAt = `${time} ${date}`
+
   const [valueEdit, setValueEdit] = useState({
-    title: '',
-    creator: '',
-    createAt: '',
-    status: '',
-    desc: ''
+    title: title,
+    creator: creator,
+    createAt: createAt,
+    status: status,
+    desc: description
   })
 
   const handleSubmitFormEdit = (e) => {
     e.preventDefault()
     onSubmitFormEdit(valueEdit)
   }
-
   const hanldeResetForm = (e) => {
     e.preventDefault()
-    onResetForm(setValueEdit({
-      title: '',
-      creator: '',
-      createAt: '',
-      status: '',
-      desc: ''
-    }))
+    onResetForm(setValueEdit({ title: '', creator: '', status: '', desc: '' }))
   }
 
   return (
     target === 'edit' ?
-      <form onSubmit={resetForm ? hanldeResetForm : handleSubmitFormEdit}>
+      <form onSubmit={handleSubmitFormEdit}>
         <div className="form__item">
           <label className="label1" > Title: </label >
           <input className="input1"
@@ -47,7 +43,7 @@ const EditContent = ({ target, onSubmitFormEdit, onResetForm, onDeleteForm, rese
 
         <div className="form__item">
           <label className="label3">Created at: </label>
-          <input className="input3" type="text" disabled />
+          <input className="input3" type="text" value={valueEdit.createAt} disabled />
         </div>
 
         <div className="form__item">
@@ -74,18 +70,22 @@ const EditContent = ({ target, onSubmitFormEdit, onResetForm, onDeleteForm, rese
 
         <div className="form__item-button">
           <button type="submit">Save</button>
-          <button type="submit" onClick={onResetForm}>Reset</button>
+          <button type="button" onClick={hanldeResetForm}>Reset</button>
           <button type="button" onClick={onDeleteForm} >Delete</button>
         </div>
 
-      </form> : <ListContent />
+      </form> : null
   )
 }
 
 const mapStateToProps = state => {
   return {
     target: state.create.target,
-    resetForm: state.create.resetForm
+    resetForm: state.create.resetForm,
+    title: state.create.title,
+    creator: state.create.creator,
+    description: state.create.description,
+    status: state.create.status
   }
 }
 

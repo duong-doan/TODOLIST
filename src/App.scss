@@ -16,7 +16,7 @@ $text-color-content: rgb(53, 52, 52);
     justify-content: space-between;
 
     background-color: $bg-primary;
-    height: 80px;
+    height: 60px;
 
     a {
       text-decoration: none;
@@ -39,7 +39,7 @@ $text-color-content: rgb(53, 52, 52);
 
       input {
         width: 60%;
-        padding: 0.8rem;
+        padding: 0.6rem;
         border-radius: 10px;
         outline: none;
         border: 2px solid white;
@@ -54,7 +54,7 @@ $text-color-content: rgb(53, 52, 52);
 
       button {
         width: 20%;
-        padding: 0.7rem;
+        padding: 0.6rem;
         border-radius: 10px;
         outline: none;
 
@@ -104,6 +104,23 @@ $text-color-content: rgb(53, 52, 52);
       width: 80%;
       display: flex;
       flex-wrap: wrap;
+      .main__content-item {
+        h6 {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      .item__content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
 
       form {
         display: flex;
@@ -170,18 +187,42 @@ $text-color-content: rgb(53, 52, 52);
         color: $text-color-primary;
         border: 1px solid $text-color-primary;
         border-radius: 10px;
-        padding: 0.6rem 1rem;
+        padding: 0.2rem 1rem;
         margin: 10px 10px 2px 0;
 
         h6 {
           font-size: 1.2rem;
-          margin: 8px 0;
+          margin: 4px 0;
         }
 
         p {
-          margin: 8px 0;
+          margin: 4px 0;
           color: $text-color-content;
         }
+      }
+    }
+  }
+
+  .pagination {
+    position: fixed;
+    left: 50%;
+    bottom: 2px;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 20%;
+    margin: auto;
+
+    button {
+      font-size: 2rem;
+      border: none;
+      outline: none;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
       }
     }
   }

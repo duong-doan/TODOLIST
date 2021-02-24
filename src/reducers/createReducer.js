@@ -1,6 +1,3 @@
-// default reducer
-// Note: You can remove this reducer and create your own reducer
-
 import {
   CLICK_CREATE,
   SUBMIT_CREATE_TASK,
@@ -10,29 +7,39 @@ import {
   CLICK_DOING_SIDEBAR,
   CLICK_DONE_SIDEBAR,
   RESET_FORM_EDIT,
-  DELETE_FORM_EDIT
+  DELETE_FORM_EDIT,
+  SUBMIT_FORM_SEARCH,
+  CLICK_ALLTASK_SIDEBAR,
+  PUSH_DATA,
 } from '../actions/createTask';
 
 const initialState = {
-  DATA: [
-    {
-      id: 0,
-      title: 'task 1',
-      creator: 'doan',
-      status: 'new',
-      description: 'this is a task,this is a task,',
-    },
-  ],
+  DATA: [],
   target: '',
   resetForm: false,
   idTask: '',
-  arrNewTask: [],
-  arrDoingTask: [],
-  arrDoneTask: [],
+  title: '',
+  creator: '',
+  status: '',
+  description: '',
+  isSearch: false,
+  searchBox: '',
+  arrSearchForm: [],
+  arrNew: [],
+  arrDoing: [],
+  arrDone: []
 }
+
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case PUSH_DATA:
+      return {
+        ...state,
+        DATA: action.data.data
+      }
+
     case CLICK_CREATE:
       return {
         ...state,
@@ -43,25 +50,29 @@ export default (state = initialState, action) => {
       return {
         DATA: [
           ...state.DATA.concat({
-            id: state.DATA.length,
+            id: state.DATA.length + 1,
             title: action.value.title,
             creator: action.value.creator,
             status: 'new',
             description: action.value.desc
           })
         ],
-        target: ''
+        target: 'new'
       }
 
     case CLICK_TASK:
+      console.log(action.value);
       return {
         ...state,
         target: 'edit',
-        idTask: action.id
+        idTask: action.value.id,
+        title: action.value.title,
+        creator: action.value.creator,
+        description: action.value.description,
+        status: action.value.status
       }
 
     case SUBMIT_EDIT_TASK:
-      console.log(state);
       const newData = [...state.DATA]
       const index = newData.findIndex(x => x.id === state.idTask);
       newData[index].title = action.value.title;
@@ -76,38 +87,43 @@ export default (state = initialState, action) => {
       }
 
     case CLICK_NEW_SIDEBAR:
-      const newDataTask = [...state.DATA]
-      const taskNew = newDataTask.filter(x => x.status === 'new')
-      console.log(taskNew);
       return {
         ...state,
-        target: 'new',
-        arrNewTask: taskNew,
+        arrNew: [...state.DATA].filter(x => x.status === 'new'),
+        target: 'new'
       }
 
     case CLICK_DOING_SIDEBAR:
-      const doingDataTask = [...state.DATA]
-      const taskDoing = doingDataTask.filter(x => x.status === 'doing')
+      console.log(state.idTask);
+
       return {
         ...state,
-        arrDoingTask: taskDoing,
+        arrDoing: [...state.DATA].filter(x => x.status === 'doing'),
       }
 
     case CLICK_DONE_SIDEBAR:
-      const doneDataTask = [...state.DATA]
-      const taskDone = doneDataTask.filter(x => x.status === 'done')
       return {
         ...state,
-        arrDoneTask: taskDone,
+        arrDone: [...state.DATA].filter(x => x.status === 'done'),
       }
 
-    // case RESET_FORM_EDIT:
-    //   // console.log(state);
-    //   return {
-    //     ...state,
-    //     resetForm: true,
-    //     target: 'edit'
-    //   }
+    case CLICK_ALLTASK_SIDEBAR:
+      console.log(state.idTask);
+
+      return {
+        ...state,
+      }
+
+    case RESET_FORM_EDIT:
+      return {
+        ...state,
+        resetForm: true,
+        target: 'edit',
+        title: '',
+        creator: '',
+        description: '',
+        status: ''
+      }
 
     case DELETE_FORM_EDIT:
       const newDataDelete = [...state.DATA]
@@ -120,6 +136,19 @@ export default (state = initialState, action) => {
         target: ''
       }
 
+    case SUBMIT_FORM_SEARCH:
+      const newDataFormSearch = [...state.DATA]
+      const itemTaskSearch = newDataFormSearch.filter(val => {
+        if (val.title.toLowerCase().includes(action.value.value.toLowerCase()) || val.creator.toLowerCase().includes(action.value.value.toLowerCase())) {
+          console.log(val);
+          return val
+        }
+      })
+      return {
+        ...state,
+        arrSearchForm: itemTaskSearch,
+        isSearch: true
+      }
 
     default:
       return {
