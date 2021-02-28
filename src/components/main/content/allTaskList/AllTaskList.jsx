@@ -8,12 +8,11 @@ const AllTaskList = ({ dataAllTaskList, isSearch, arrSearchForm, onClickedTask }
     const [currentPage, setCurrentPage] = useState(1);
     const [todosPerPage] = useState(12)
     const [totalTodos] = useState(dataAllTaskList.length)
-    // const [totalTodosSearch] = useState(arrSearchForm.length)
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage)
     }
-
+    console.log("dataAllTaskList: ", dataAllTaskList.length)
     const indexOfLastTodos = currentPage * todosPerPage;
     const indexOfFirstTodos = indexOfLastTodos - todosPerPage;
     const currentTodos = dataAllTaskList.slice(indexOfFirstTodos, indexOfLastTodos)
@@ -41,7 +40,6 @@ const AllTaskList = ({ dataAllTaskList, isSearch, arrSearchForm, onClickedTask }
                 onPageChange={handlePageChange}
                 todosPerPage={todosPerPage}
                 totalTodos={totalTodos}
-            // totalSearchTodos={totalTodosSearch}
             />
         </>
     )

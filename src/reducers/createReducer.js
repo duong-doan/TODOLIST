@@ -13,8 +13,157 @@ import {
   PUSH_DATA,
 } from '../actions/createTask';
 
+
 const initialState = {
-  DATA: [],
+  DATA: [
+    {
+      "title": "task 1",
+      "creator": "hai",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 1
+    },
+    {
+      "title": "task 2",
+      "creator": "hai",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 2
+    },
+    {
+      "title": "task 3",
+      "creator": "hai",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 3
+    },
+    {
+      "title": "task 4",
+      "creator": "tan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 4
+    },
+    {
+      "title": "task 5",
+      "creator": "danh",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 5
+    },
+    {
+      "title": "task 6",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 6
+    },
+    {
+      "title": "task 7",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 7
+    },
+    {
+      "title": "task 8",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 8
+    },
+    {
+      "title": "task 9",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 9
+    },
+    {
+      "title": "task 10",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 10
+    },
+    {
+      "title": "task 11",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 11
+    },
+    {
+      "title": "task 12",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 12
+    },
+    {
+      "title": "task 13",
+      "creator": "doan",
+      "status": "doing",
+      "description": "this is a task",
+      "id": 13
+    },
+    {
+      "status": "new",
+      "title": "akjsdhkajshdjkashdk",
+      "creator": "hkasdhaksdhkasdjhk",
+      "description": "haksdhkasdhkasjhd",
+      "id": 14
+    },
+    {
+      "status": "new",
+      "title": "ádasd",
+      "creator": "ádasd",
+      "description": "ádasd",
+      "id": 15
+    },
+    {
+      "status": "new",
+      "title": "ád",
+      "creator": "ád",
+      "description": "ádasd",
+      "id": 16
+    },
+    {
+      "status": "new",
+      "title": "hai lol",
+      "creator": "tan lol",
+      "description": "danh lol",
+      "id": 17
+    },
+    {
+      "status": "new",
+      "title": "hasfdhagsfdhasgfd",
+      "creator": "hgasfdhagsfdhgasdf",
+      "description": "ahgsdfahgsdfhagsfd",
+      "id": 18
+    },
+    {
+      "title": "asdaskk",
+      "creator": "asdasd",
+      "description": "asdasdasd",
+      "status": "new",
+      "id": 19
+    },
+    {
+      "status": "new",
+      "title": "asdasd",
+      "creator": "zxcasdzxc",
+      "description": "asdasd",
+      "id": 20
+    },
+    {
+      "status": "new",
+      "title": "123",
+      "creator": "asd123",
+      "description": "asd123",
+      "id": 21
+    }
+  ],
   target: '',
   resetForm: false,
   idTask: '',
@@ -37,7 +186,7 @@ export default (state = initialState, action) => {
     case PUSH_DATA:
       return {
         ...state,
-        DATA: action.data.data
+        DATA: action.data
       }
 
     case CLICK_CREATE:
@@ -47,21 +196,20 @@ export default (state = initialState, action) => {
       };
 
     case SUBMIT_CREATE_TASK:
+      console.log(state.DATA)
       return {
-        DATA: [
-          ...state.DATA.concat({
-            id: state.DATA.length + 1,
-            title: action.value.title,
-            creator: action.value.creator,
-            status: 'new',
-            description: action.value.desc
-          })
-        ],
+        ...state,
+        DATA: state.DATA.concat({
+          id: state.DATA.length + 1,
+          status: 'new',
+          title: action.value.title,
+          creator: action.value.creator,
+          description: action.value.desc
+        }),
         target: 'new'
       }
 
     case CLICK_TASK:
-      console.log(action.value);
       return {
         ...state,
         target: 'edit',
@@ -94,8 +242,6 @@ export default (state = initialState, action) => {
       }
 
     case CLICK_DOING_SIDEBAR:
-      console.log(state.idTask);
-
       return {
         ...state,
         arrDoing: [...state.DATA].filter(x => x.status === 'doing'),
@@ -108,8 +254,7 @@ export default (state = initialState, action) => {
       }
 
     case CLICK_ALLTASK_SIDEBAR:
-      console.log(state.idTask);
-
+      console.log(state.DATA);
       return {
         ...state,
       }
@@ -129,7 +274,6 @@ export default (state = initialState, action) => {
       const newDataDelete = [...state.DATA]
       const indexTask = newDataDelete.findIndex(x => x.id === state.idTask)
       newDataDelete.splice(indexTask, 1)
-      console.log(newDataDelete);
       return {
         ...state,
         DATA: newDataDelete,

@@ -7,7 +7,9 @@ const CreateTask = ({ onSubmitForm, target, }) => {
   const createAt = `${time} ${date}`
 
   const [value, setValue] = useState({
+    id: '',
     title: '',
+    status: '',
     creator: '',
     desc: '',
   })
