@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-// calling the default reducer to create a link
-import createReducer from './createReducer';
+import createTaskReducer from './createReducer';
+import getDataReducer from './getDataReducer';
+import taskReducer from './taskReducer'
 
 const rootReducers = combineReducers({
-    // add reducer files references here
-    create: createReducer
+    getDataReducer,
+    createTaskReducer,
+    taskReducer
 });
 
 export default rootReducers;

@@ -1,0 +1,6 @@
+
+export const SUBMIT_FORM_CREATE = 'SUBMIT_FORM_CREATE'
+export const SUBMIT_FORM_EDIT = 'SUBMIT_FORM_EDIT';
+export const DELETE_FORM_EDIT = 'DELETE_FORM_EDIT';
+export const GET_DATA = 'GET_DATA'
+
