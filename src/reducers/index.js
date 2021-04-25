@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 
 import createTaskReducer from './createReducer';
 import getDataReducer from './getDataReducer';
-import taskReducer from './taskReducer'
+import taskReducer from './taskReducer';
+import searchReducer from './searchReducer'
 
 const rootReducers = combineReducers({
     getDataReducer,
     createTaskReducer,
-    taskReducer
+    taskReducer,
+    searchReducer
 });
 
 export default rootReducers;

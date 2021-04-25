@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ContentItem from "../ContentItem";
 
@@ -11,22 +10,9 @@ const AllTaskList = ({ onClickedTask }) => {
                 title={item.title}
                 creator={item.creator}
                 status={item.status}
-                description={item.description}
-                clicked={() => onClickedTask(item)} />
+                description={item.description} />
         </Link>
     )) : <p>loading</p>
 }
 
-const mapStateToProps = state => {
-    return {
-        data: state.getDataReducer.data,
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onClickedTask: (item) => { dispatch({ type: 'CLICK_TASK', value: item }) }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllTaskList)
+export default AllTaskList

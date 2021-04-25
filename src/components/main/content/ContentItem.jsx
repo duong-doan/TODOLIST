@@ -1,9 +1,8 @@
-import { connect } from "react-redux";
-import React from 'react'
+import React from 'react';
 
-const ContentItem = ({ title, creator, status, description, clicked }) => {
+const ContentItem = ({ title, creator, status, description }) => {
     return (
-        <div className="main__content-item" onClick={clicked}>
+        <div className="main__content-item">
             <h6>Title: {title}</h6>
             <p>Creator: {creator}</p>
             <p>status: {status}</p>

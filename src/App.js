@@ -12,6 +12,7 @@ import DoneTaskList from './components/main/content/doneTaskList/DoneTaskList';
 import EditContent from './components/main/content/EditContent';
 import NewTaskList from './components/main/content/newTaskList/NewTaskList';
 import Sidebar from './components/main/sidebar/Sidebar';
+import SearchList from './components/main/content/searchList/SearchList';
 
 
 const App = ({ onGetData }) => {
@@ -54,8 +55,9 @@ const App = ({ onGetData }) => {
               <Route path="/new" exact component={NewTaskList} />
               <Route path="/doing" exact component={DoingTaskList} />
               <Route path="/done" exact component={DoneTaskList} />
-              <Route path="/create" exact component={CreateTask} />
+              <Route path="/create/" exact component={CreateTask} />
               <Route path="/edit/:id" component={EditContent} />
+              <Route path="/search" component={SearchList} />
             </Switch>
           </div>
         </div>

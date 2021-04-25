@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as TypeActions from "../../../constants/TypeActions";
 
-const CreateTask = ({ onSubmitFormCreate, data }) => {
+const CreateTask = ({ onSubmitFormCreate, data }, props) => {
   const time = ` ${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
   const date = `${new Date().getDay()}-${new Date().getMonth() + 1}-${new Date().getFullYear()}`
   const createAt = `${time} ${date}`
@@ -15,9 +15,12 @@ const CreateTask = ({ onSubmitFormCreate, data }) => {
     description: '',
   })
 
+  let history = useHistory()
+
   const hanldeSubmit = (e) => {
     e.preventDefault();
     onSubmitFormCreate(value, data)
+    history.push('/all')
   }
 
 

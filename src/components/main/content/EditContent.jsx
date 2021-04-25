@@ -7,7 +7,9 @@ const EditContent = (props) => {
   const date = `${new Date().getDay()}-${new Date().getMonth() + 1}-${new Date().getFullYear()}`
   const createAt = `${time} ${date}`;
 
-  let [defaultValue, setDefaultValue] = useState({
+  const getTodoLocal = JSON.parse(localStorage.getItem('listTodo'))
+
+  const [defaultValue, setDefaultValue] = useState({
     title: '',
     creator: '',
     status: '',
@@ -25,13 +27,22 @@ const EditContent = (props) => {
   const handleSubmitFormEdit = (e) => {
     e.preventDefault()
     props.onSubmitFormEdit(valueEdit, props.match.params.id)
+    props.history.push('/all')
   }
   const hanldeResetForm = (e) => {
     e.preventDefault()
     setDefaultValue({ title: '', creator: '', status: '', desc: '' })
   }
 
-  const getTodoLocal = JSON.parse(localStorage.getItem('listTodo'))
+
+  const handleDeleteForm = () => {
+    const newListTodo = [...getTodoLocal];
+    const indexTodo = newListTodo.findIndex(todo => todo.id === parseInt(props.match.params.id))
+    newListTodo.splice(indexTodo, 1)
+    localStorage.setItem('listTodo', JSON.stringify(newListTodo))
+    props.history.push('/all')
+  }
+
 
   useEffect(() => {
     getTodoLocal.filter(item => {
@@ -93,7 +104,7 @@ const EditContent = (props) => {
       <div className="form__item-button">
         <button type="submit">Save</button>
         <button type="button" onClick={hanldeResetForm}>Reset</button>
-        <button type="button" onClick={() => props.onDeleteForm(props.match.params.id)} >Delete</button>
+        <button type="button" onClick={handleDeleteForm} >Delete</button>
       </div>
     </form>
   )
@@ -102,8 +113,6 @@ const EditContent = (props) => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitFormEdit: (value, id) => dispatch({ type: TypeActions.SUBMIT_FORM_EDIT, value, id }),
-    onResetForm: () => dispatch({ type: 'RESET_FORM_EDIT' }),
-    onDeleteForm: (id) => dispatch({ type: TypeActions.DELETE_FORM_EDIT, id })
   }
 }
 
