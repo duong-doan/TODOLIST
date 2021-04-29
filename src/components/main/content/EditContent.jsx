@@ -86,17 +86,17 @@ const EditContent = (props) => {
 
       <div className="form__item">
         <div className="form__item-radio">
-          <label for="new">New</label>
+          <label for="new" name="status-task">New</label>
           <input type="radio" name="status-task" id="new" value="new" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
         </div>
 
         <div className="form__item-radio">
-          <label for="doing">Doing</label>
-          <input type="radio" name="status-task" id="doing" value="doing" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
+          <label for="doing" name="status-task">Doing</label>
+          <input type="radio" name="status-task" id="doing" value="doing" checked onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
         </div>
 
         <div className="form__item-radio">
-          <label for="done">Done</label>
+          <label for="done" name="status-task">Done</label>
           <input type="radio" name="status-task" id="done" value="done" onChange={e => setValueEdit({ ...valueEdit, status: e.target.value })} />
         </div>
       </div>

@@ -11,20 +11,21 @@ $text-color-content: rgb(53, 52, 52);
   height: 100vh;
 
   .header__navbar {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     background-color: $bg-primary;
-    height: 60px;
 
     a {
       text-decoration: none;
-      width: 20%;
+      width: 40%;
       margin-left: 1rem;
       color: white;
 
       h2 {
+        width: 100%;
         margin: 0;
         font-size: 2rem;
         &:hover {
@@ -35,40 +36,42 @@ $text-color-content: rgb(53, 52, 52);
     }
 
     .navbar-search {
-      width: 50%;
+      width: 60%;
+      form {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        input {
+          width: 60%;
+          padding: 0.6rem;
+          border-radius: 10px;
+          outline: none;
+          border: 2px solid white;
 
-      input {
-        width: 60%;
-        padding: 0.6rem;
-        border-radius: 10px;
-        outline: none;
-        border: 2px solid white;
-
-        margin-right: 1rem;
-
-        &:hover {
-          border: 2px solid $hover-color;
-          transition: linear 0.3s;
+          &:hover {
+            border: 2px solid $hover-color;
+            transition: linear 0.3s;
+          }
         }
-      }
 
-      button {
-        width: 20%;
-        padding: 0.6rem;
-        border-radius: 10px;
-        outline: none;
+        button {
+          width: 30%;
+          padding: 0.6rem;
+          border-radius: 10px;
+          outline: none;
 
-        font-size: 1rem;
-        font-weight: 600;
-        color: white;
-        border: 1px solid white;
-        background-color: transparent;
+          font-size: 1rem;
+          font-weight: 600;
+          color: white;
+          border: 1px solid white;
+          background-color: transparent;
 
-        &:hover {
-          cursor: pointer;
-          transition: linear 0.2s;
-          color: $hover-color;
-          border: 1px solid $hover-color;
+          &:hover {
+            cursor: pointer;
+            transition: linear 0.2s;
+            color: $hover-color;
+            border: 1px solid $hover-color;
+          }
         }
       }
     }
@@ -76,10 +79,12 @@ $text-color-content: rgb(53, 52, 52);
 
   .main {
     display: flex;
+    justify-content: space-around;
 
     &__sidebar {
       width: 20%;
       ul {
+        padding-left: 10px;
         list-style: none;
 
         li {
@@ -104,13 +109,29 @@ $text-color-content: rgb(53, 52, 52);
       width: 80%;
       display: flex;
       flex-wrap: wrap;
-      .main__content-item {
+
+      a {
+        width: 20%;
+        text-decoration: none;
+        color: $text-color-primary;
+        border: 1px solid $text-color-primary;
+        border-radius: 10px;
+        padding: 0.2rem 1rem;
+        margin: 10px 10px 2px 0;
+
         h6 {
+          font-size: 1.2rem;
+          margin: 4px 0;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
+        }
+
+        p {
+          margin: 4px 0;
+          color: $text-color-content;
         }
       }
 
@@ -180,26 +201,6 @@ $text-color-content: rgb(53, 52, 52);
           }
         }
       }
-
-      a {
-        width: 20%;
-        text-decoration: none;
-        color: $text-color-primary;
-        border: 1px solid $text-color-primary;
-        border-radius: 10px;
-        padding: 0.2rem 1rem;
-        margin: 10px 10px 2px 0;
-
-        h6 {
-          font-size: 1.2rem;
-          margin: 4px 0;
-        }
-
-        p {
-          margin: 4px 0;
-          color: $text-color-content;
-        }
-      }
     }
   }
 
@@ -223,6 +224,79 @@ $text-color-content: rgb(53, 52, 52);
 
       &:hover {
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (min-width: 374px) and (max-width: 700px) {
+  .header__navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .navbar-create {
+      margin-left: 0;
+      width: 24%;
+      h2 {
+        font-size: 1rem;
+      }
+    }
+    .navbar-search {
+      width: 64%;
+      form {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        input {
+          width: 50%;
+        }
+        button {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  .main {
+    flex-direction: column;
+    .main__sidebar {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      ul {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+        a {
+          width: 25%;
+          li {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .main__content {
+      width: 100%;
+      flex-wrap: wrap;
+      // flex-direction: row;
+      justify-content: flex-start;
+
+      a {
+        margin-right: 0.5rem;
+        width: 38%;
+      }
+
+      form {
+        width: 60%;
+        margin: auto;
+        padding: 0;
+        display: flex;
       }
     }
   }

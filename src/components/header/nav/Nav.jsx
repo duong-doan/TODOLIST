@@ -15,7 +15,7 @@ const Nav = ({ onSubmitFormSearch }) => {
 
     return (
         <div className="header__navbar">
-            <Link to="/create">
+            <Link to="/create" className="navbar-create">
                 <h2>Create new task</h2>
             </Link>
             <div className="navbar-search">
